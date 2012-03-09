@@ -1,6 +1,17 @@
 (function() {
     function PS2Keyboard() { }
     
+    var LED_SCROLL = 1;
+    var LED_NUM    = 2;
+    var LED_CAPS   = 4;
+    
+    PS2Keyboard.prototype.led = function(status) {
+        while(Kernel.inb(0x60) != 0);;
+        Kernel.outb(0x60, 0xED);
+        while(Kernel.inb(0x60) != 0);;
+        Kernel.outb(0x60, status);
+    };
+    
     PS2Keyboard.prototype.enable = function() {
         var self = this;
         Kernel.isrs[33] = function() {
