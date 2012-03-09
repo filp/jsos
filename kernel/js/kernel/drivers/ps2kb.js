@@ -1,9 +1,9 @@
 (function() {
     function PS2Keyboard() { }
     
-    var LED_SCROLL = 1;
-    var LED_NUM    = 2;
-    var LED_CAPS   = 4;
+    PS2Keyboard.LED_SCROLL = 1;
+    PS2Keyboard.LED_NUM    = 2;
+    PS2Keyboard.LED_CAPS   = 4;
     
     PS2Keyboard.prototype.led = function(status) {
         while(Kernel.inb(0x60) != 0);;
